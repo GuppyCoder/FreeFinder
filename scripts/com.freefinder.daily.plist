@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <key>Label</key>
+    <string>com.freefinder.daily</string>
+    <key>ProgramArguments</key>
+    <array>
+      <string>/bin/bash</string>
+      <string>/Users/guppycoder/Code/FreeFinder/run_freefinder.sh</string>
+    </array>
+    <key>StartCalendarInterval</key>
+    <dict>
+      <key>Hour</key>
+      <integer>8</integer>
+      <key>Minute</key>
+      <integer>0</integer>
+    </dict>
+    <key>StandardOutPath</key>
+    <string>/tmp/freefinder.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/freefinder.err</string>
+    <key>WorkingDirectory</key>
+    <string>/Users/guppycoder/Code/FreeFinder</string>
+    <key>RunAtLoad</key>
+    <true/>
+  </dict>
+  <!-- Copy this file to ~/Library/LaunchAgents and load with:
+       launchctl load ~/Library/LaunchAgents/com.freefinder.daily.plist
+       launchctl unload ~/Library/LaunchAgents/com.freefinder.daily.plist (to remove)
+  -->
+</plist>

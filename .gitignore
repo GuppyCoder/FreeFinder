@@ -3,3 +3,4 @@
 .venv313/
 __pycache__/
 freefinder.db
+.env
