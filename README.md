@@ -18,7 +18,7 @@ FreeFinder is a focused Python crawler that watches Craigslist’s free listings
 - `filters.py` – applies keyword allow/block lists and seven-day freshness checks.
 - `storage/sqlite.py` – initializes the DB, upserts new listings, purges stale rows.
 - `notify/` – pluggable channels:
-  - `email.py` – SMTP email summaries with listing links (intended daily flow).
+  - `email.py` – SMTP email summaries with listing links (intended digest flow).
   - `slack.py` – Slack webhooks.
   - `sms.py` – Twilio SMS (optional).
   - `ntfy.py` – ntfy push topics (optional, no account needed).
@@ -109,16 +109,16 @@ export NTFY_SERVER=https://ntfy.sh   # default; self-host if you like
 Posts a one-line summary to the topic on each crawl that inserts new rows. It’s an interesting “no-setup” option: install the ntfy app, subscribe to `freefinder-alerts`, and you’re done. Two current limitations on iOS: you often have to manually pull to refresh to see new messages, and push popups can be unreliable. Also, Markdown/clickable links aren’t supported on Apple yet (action buttons exist but aren’t as simple), so if you want clickable URLs, email remains the easiest default.
 
 
-## Schedule It (Once Per Day)
+## Schedule It (Once Per Week)
 
 Recommended (macOS): use `launchd` with a wrapper script and `.env` (keeps secrets out of git).
 
 1) Copy `.env.example` to `.env` and fill in your SMTP/email values (file is gitignored).
 2) Make the wrapper executable: `chmod +x run_freefinder.sh`.
-3) Copy `scripts/com.freefinder.daily.plist` to `~/Library/LaunchAgents/com.freefinder.daily.plist`.
-4) Load it: `launchctl load ~/Library/LaunchAgents/com.freefinder.daily.plist` (unload with `launchctl unload ...`).
+3) Copy `scripts/com.freefinder.weekly.plist` to `~/Library/LaunchAgents/com.freefinder.weekly.plist`.
+4) Load it: `launchctl load ~/Library/LaunchAgents/com.freefinder.weekly.plist` (unload with `launchctl unload ...`).
 
-The plist runs `run_freefinder.sh` daily at 8am, logs to `/tmp/freefinder.log` and `/tmp/freefinder.err`, and reads secrets from `.env`. Adjust the hour/minute or paths in the plist as needed.
+The plist runs `run_freefinder.sh` weekly on Monday at 8am, logs to `/tmp/freefinder.log` and `/tmp/freefinder.err`, and reads secrets from `.env`. Adjust the weekday/hour/minute or paths in the plist as needed.
 
 If you prefer cron or another scheduler, reuse `run_freefinder.sh` so you don’t duplicate config.
 

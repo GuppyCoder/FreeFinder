@@ -3,7 +3,7 @@
 <plist version="1.0">
   <dict>
     <key>Label</key>
-    <string>com.freefinder.daily</string>
+    <string>com.freefinder.weekly</string>
     <key>ProgramArguments</key>
     <array>
       <string>/bin/bash</string>
@@ -11,6 +11,8 @@
     </array>
     <key>StartCalendarInterval</key>
     <dict>
+      <key>Weekday</key>
+      <integer>2</integer>
       <key>Hour</key>
       <integer>8</integer>
       <key>Minute</key>
@@ -26,7 +28,7 @@
     <true/>
   </dict>
   <!-- Copy this file to ~/Library/LaunchAgents and load with:
-       launchctl load ~/Library/LaunchAgents/com.freefinder.daily.plist
-       launchctl unload ~/Library/LaunchAgents/com.freefinder.daily.plist (to remove)
+       launchctl load ~/Library/LaunchAgents/com.freefinder.weekly.plist
+       launchctl unload ~/Library/LaunchAgents/com.freefinder.weekly.plist (to remove)
   -->
 </plist>
